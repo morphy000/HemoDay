@@ -198,9 +198,10 @@ class _DocumentsWidgetState extends State<DocumentsWidget> with TickerProviderSt
                            }
                           
                           documentsCubit.add(
-                            path: file.path!,
-                            name: file.name,
-                            extractedText: extractedText,
+                            file.path!,
+                            file.name,
+                            extractedText,
+                            '', // note parameter
                           );
                           
                           messenger.showSnackBar(

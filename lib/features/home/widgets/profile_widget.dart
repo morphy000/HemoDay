@@ -77,10 +77,10 @@ class _ProfileWidgetState extends State<ProfileWidget> with TickerProviderStateM
         // Заполняем поля данными из состояния
         if (state.name.isNotEmpty && name.text.isEmpty) {
           name.text = state.name;
-          age.text = state.age.toString();
+          age.text = state.age?.toString() ?? '';
           sex = state.sex == 'M' ? 'М' : 'Ж';
-          bloodGroup = state.bloodGroup;
-          diagnosis = state.diagnosis;
+          bloodGroup = state.bloodGroup ?? '';
+          diagnosis = state.diagnosis ?? '';
         }
 
         return FadeTransition(
@@ -471,14 +471,14 @@ class _ProfileWidgetState extends State<ProfileWidget> with TickerProviderStateM
                 context.read<AuthCubit>().logout();
 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Все сохраненные данные очищены.'),
+                  SnackBar(
+                    content: const Text('Все сохраненные данные очищены.'),
                     backgroundColor: Colors.red,
                     behavior: SnackBarBehavior.floating,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    duration: Duration(seconds: 3),
+                    duration: const Duration(seconds: 3),
                   ),
                 );
                 Navigator.of(context).pop();
